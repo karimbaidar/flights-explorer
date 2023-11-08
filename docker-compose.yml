@@ -1,0 +1,22 @@
+version: '3'
+services:
+  client:
+    build: ./client
+    command: npm run serve -- --no-lint-on-save
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+
+  server:
+    build: ./server
+    ports:
+      - '8081:8081'
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
